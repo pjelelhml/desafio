@@ -6,8 +6,8 @@ This project is Netflix simple clone built with Vuejs
 
 # Features
 
-- :heavy_check_mark: **Vue Js** — A JavaScript library for building user interfaces
-- :recycle: **Vuex** — A state management pattern + library for Vue.js applications
+- :heavy_check_mark: **Vue Js**
+- :recycle: **Vuex**
 
 ## Getting started
 
@@ -29,9 +29,9 @@ This project is part of my personal portfolio, I'm trying improve my skills, so,
 
 You can report that could make me a better developer!
 
-Email-me: ricardovasconcelos.dev@gmail.com
+Email-me:
 
-Connect with me at Linkedin: https://www.linkedin.com/in/ricardo-vasconcelos/
+Connect with me at Linkedin:
 
 Also, you can use this Project as you wish!!
 
