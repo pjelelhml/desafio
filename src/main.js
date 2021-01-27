@@ -1,12 +1,15 @@
 import Vue from "vue";
 import App from "./App.vue";
 
+
 import "vue-awesome/icons/flag";
 import "vue-awesome/icons";
 import router from "./router";
 import VueYoutube from "vue-youtube";
 import VueToast from "vue-toast-notification";
 import "vue-toast-notification/dist/index.css";
+
+Vue.config.productionTip = false
 
 Vue.use(VueToast);
 Vue.use(VueYoutube);

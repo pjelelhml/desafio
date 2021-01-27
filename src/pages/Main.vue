@@ -9,7 +9,7 @@
     <Movies typeMovie="s=game" typeDescription="Ficção" />
     <Movies typeMovie="s=brain" typeDescription="Para todas idades" />
     <Movies typeMovie="s=all" typeDescription="Família" />
-    <h4>Vueflix - Ricardo Vasconcelos</h4>
+    <h4>Vueflix</h4>
   </div>
 </template>
 
@@ -22,8 +22,8 @@ export default {
   components: {
     Header,
     NextReleases,
-    Movies
-  }
+    Movies,
+  },
 };
 </script>
 
