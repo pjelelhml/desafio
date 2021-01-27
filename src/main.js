@@ -9,7 +9,30 @@ import VueYoutube from "vue-youtube";
 import VueToast from "vue-toast-notification";
 import "vue-toast-notification/dist/index.css";
 
+// auth code
+
+// import 'bulma/css/bulma.css';
 Vue.config.productionTip = false
+
+// Import the Auth0 configuration
+import { domain, clientId } from "../auth_config.json";
+
+// Import the plugin here
+import { Auth0Plugin } from "./auth";
+
+Vue.use(Auth0Plugin, {
+  domain,
+  clientId,
+  onRedirectCallback: appState => {
+    router.push(
+      appState && appState.targetUrl
+        ? appState.targetUrl
+        : window.location.pathname
+    );
+  }
+});
+
+// /authcode
 
 Vue.use(VueToast);
 Vue.use(VueYoutube);

@@ -30,7 +30,13 @@
         <li class="items">Séries</li>
         <li class="items">Filmes</li>
         <li class="items">Mais recentes</li>
-        <li class="items" v-on:click="NavigateMyList">Minha lista</li>
+        <li
+          class="items"
+          v-if="$auth.isAuthenticated"
+          v-on:click="NavigateMyList"
+        >
+          Minha lista
+        </li>
         <li></li>
       </ul>
     </nav>
@@ -39,9 +45,46 @@
         <input type="text" name="text" placeholder="Títulos, gente e gêneros" />
       </form>
     </div>
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          <!-- Check that the SDK client is not currently loading before accessing is methods -->
+          <div v-if="!$auth.loading">
+            <div class="button-block">
+              <button
+                v-if="!$auth.isAuthenticated"
+                @click="Login"
+                class="button is-xl is-dark"
+              >
+                Cadastrar
+              </button>
+              <h3
+                v-if="$auth.isAuthenticated"
+                class="is-size-6 has-background-dark welcome"
+              >
+                Bem vindo, {{ $auth.user.given_name }}!
+              </h3>
+              <button
+                v-if="$auth.isAuthenticated"
+                @click="Logout"
+                class="button is-xl is-dark"
+              >
+                Logout
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div id="icons">
-      <v-icon name="bell" scale="1.3" color="#e5e5e5" />
-      <v-icon name="user-circle" scale="2" color="#e5e5e5" />
+      <v-icon
+        v-if="$auth.isAuthenticated"
+        name="bell"
+        scale="1.3"
+        color="#e5e5e5"
+      />
+      <v-icon name="user-circle" scale="2" color="#e5e5e5" @click="GoToProfile"
+      beforeEnter: authGuard />
     </div>
   </div>
 </template>
@@ -54,11 +97,11 @@ export default {
   data() {
     return {
       image: image,
-      inputSearch: ""
+      inputSearch: "",
     };
   },
   components: {
-    "v-icon": Icon
+    "v-icon": Icon,
   },
   methods: {
     NavigateMain() {
@@ -66,8 +109,19 @@ export default {
     },
     NavigateMyList() {
       this.$router.push({ name: "MyList" });
-    }
-  }
+    },
+    Login() {
+      this.$auth.loginWithRedirect();
+    },
+    Logout() {
+      this.$auth.logout({
+        returnTo: window.location.origin,
+      });
+    },
+    GoToProfile() {
+      this.$router.push({ name: "Profile" });
+    },
+  },
 };
 </script>
 
